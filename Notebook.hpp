@@ -21,7 +21,7 @@ namespace ariel
         void write(int page, int row, int column, Direction,std::string txt);
         std::string read(int page, int row, int column,Direction,int length);
         void erase(int page, int row, int column,Direction,int length);
-        std::string show(int page);
+        void show(int page);
 
     };
 }

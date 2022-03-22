@@ -10,6 +10,6 @@ std::string ariel::Notebook::read(int page, int row, int column,Direction,int le
 void ariel::Notebook::erase(int page, int row, int column,Direction,int length){
 
 }
-std::string ariel::Notebook::show(int page){
-    return "";
+void ariel::Notebook::show(int page){
+    
 }

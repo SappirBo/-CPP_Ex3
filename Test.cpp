@@ -58,7 +58,6 @@ TEST_CASE("notebook 2")
 	notebook2.write(300,8,0,Direction::Horizontal,"You’ve got enemies? Good, that means you actually stood up for something - Eminem");
 	notebook2.write(300,9,0,Direction::Horizontal,"Chuba chuba chuba chuba chuba chuba chubby - Eminem");
 	notebook2.write(300,10,0,Direction::Horizontal,"If you stop at general math, you’re only going to make general math money - Snoop Dogg");
-
 	
 	CHECK_FALSE(notebook2.read(299,5,0,Direction::Horizontal,59) != "Memories have to be our most painful blessing - Kanye West");
 	CHECK_FALSE(notebook2.read(300,5,0,Direction::Horizontal,30) != "Memories have to be our most painful blessing - Kanye West");
@@ -85,7 +84,12 @@ TEST_CASE("Bad input")
 	// Test Case 3 --> notebook 3;
 
 	// Check write for bad input  --> string size = 89, strating write at 20 --> total length is too big (109 > 100).
-	notebook3.write(300,10,20,Direction::Horizontal,"If you stop at general math, you’re only going to make general math money - Snoop Dogg");
+	CHECK_THROWS(notebook3.write(300,10,20,Direction::Horizontal,"If you stop at general math, you’re only going to make general math money - Snoop Dogg"));
+	CHECK_THROWS(notebook3.write(300,9,0,Direction::Horizontal,"Chuba chuba chuba chuba chuba chuba chubby I don't have any lines to go right here So, chubba-Teletubby - Eminem"));
+
+
+	// Check write for bad input  --> '~'
+	CHECK_THROWS(notebook3.write(172,10,20,Direction::Vertical,"Snoop ~~~ Dogg ~~~ "));
 
 
 	// Check read for bad input  page/ row/ column.
@@ -96,6 +100,7 @@ TEST_CASE("Bad input")
 	CHECK_THROWS(notebook3.read(0,-1,0,Direction::Horizontal,3));
 	CHECK_THROWS(notebook3.read(0,0,-1,Direction::Horizontal,3));
 	CHECK_THROWS(notebook3.read(0,0,150,Direction::Horizontal,3));
+	CHECK_THROWS(notebook3.write(300,9,0,Direction::Horizontal,"Chuba chuba chuba chuba chuba chuba chubby I don't have any lines to go right here So, chubba-Teletubby - Eminem"););
 	
 }
 
